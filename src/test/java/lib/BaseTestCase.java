@@ -1,10 +1,8 @@
 package lib;
 
-import io.restassured.RestAssured;
 import io.restassured.http.Headers;
 import io.restassured.response.Response;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import static org.hamcrest.Matchers.hasKey;
@@ -29,6 +27,5 @@ public class BaseTestCase {
         Response.then().assertThat().body("$", hasKey(name));
         return Response.jsonPath().getInt(name);
     }
-
 }
 
