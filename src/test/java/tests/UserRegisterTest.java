@@ -148,5 +148,4 @@ public class UserRegisterTest extends BaseTestCase {
         Assertions.assertResponseCodeEquals(responseCreateAuth, 400);
         Assertions.assertJsonHasNotField(responseCreateAuth, "id");
     }
-
 }
