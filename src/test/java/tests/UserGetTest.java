@@ -3,6 +3,7 @@ package tests;
 import io.qameta.allure.Description;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
+import lib.ApiCoreRequests;
 import lib.Assertions;
 import lib.BaseTestCase;
 import org.junit.jupiter.api.DisplayName;
@@ -12,6 +13,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class UserGetTest extends BaseTestCase {
+
+    private final ApiCoreRequests apiCoreRequests = new ApiCoreRequests();
 
     @Test
     public void testGetUserDataNotAuth() {

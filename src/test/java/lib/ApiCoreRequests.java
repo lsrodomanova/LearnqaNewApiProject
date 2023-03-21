@@ -39,6 +39,14 @@ public class ApiCoreRequests {
                 .andReturn();
     }
 
+    @Step("Make a GET request without token and cookie")
+    public Response makeGetRequestWithoutTokenCookie(String url) {
+        return given()
+                .filter(new AllureRestAssured())
+                .get(url)
+                .andReturn();
+    }
+
     @Step("Make a POST request")
     public Response makePostRequest(String url, Map<String,String> authData) {
         return given()
@@ -95,6 +103,16 @@ public class ApiCoreRequests {
                 .filter(new AllureRestAssured())
                 .body(wrongData)
                 .post(url)
+                .andReturn();
+    }
+
+    @Step("Make a DELETE request with token and auth cookie")
+    public Response makeDeleteRequest(String url, String token, String cookie) {
+        return given()
+                .filter(new AllureRestAssured())
+                .header(new Header("x-csrf-token", token))
+                .cookie("auth_sid", cookie)
+                .delete(url)
                 .andReturn();
     }
 }
