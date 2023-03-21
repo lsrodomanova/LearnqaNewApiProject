@@ -63,11 +63,8 @@ public class UserRegisterTest extends BaseTestCase {
 
         Map<String, String> userData = DataGenerator.getRegistrationDataIncorrectEmail();
 
-        Response responseCreateAuth = RestAssured
-                .given()
-                .body(userData)
-                .post("https://playground.learnqa.ru/api/user/")
-                .andReturn();
+        Response responseCreateAuth = apiCoreRequests
+                .makePostRequest("https://playground.learnqa.ru/api/user/", userData);
 
         Assertions.assertResponseCodeEquals(responseCreateAuth, 400);
         Assertions.assertJsonHasNotField(responseCreateAuth, "id");
@@ -122,11 +119,8 @@ public class UserRegisterTest extends BaseTestCase {
 
         Map<String, String> userData = DataGenerator.getRegistrationDataWithShortName();
 
-        Response responseCreateAuth = RestAssured
-                .given()
-                .body(userData)
-                .post("https://playground.learnqa.ru/api/user/")
-                .andReturn();
+        Response responseCreateAuth = apiCoreRequests
+                .makePostRequest("https://playground.learnqa.ru/api/user/", userData);
 
         Assertions.assertResponseCodeEquals(responseCreateAuth, 400);
         Assertions.assertJsonHasNotField(responseCreateAuth, "id");
@@ -139,11 +133,8 @@ public class UserRegisterTest extends BaseTestCase {
 
         Map<String, String> userData = DataGenerator.getRegistrationDataWithLongName();
 
-        Response responseCreateAuth = RestAssured
-                .given()
-                .body(userData)
-                .post("https://playground.learnqa.ru/api/user/")
-                .andReturn();
+        Response responseCreateAuth = apiCoreRequests
+                .makePostRequest("https://playground.learnqa.ru/api/user/", userData);
 
         Assertions.assertResponseCodeEquals(responseCreateAuth, 400);
         Assertions.assertJsonHasNotField(responseCreateAuth, "id");
