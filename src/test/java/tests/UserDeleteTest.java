@@ -1,6 +1,9 @@
 package tests;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import io.restassured.response.Response;
 import lib.ApiCoreRequests;
 import lib.Assertions;
@@ -22,6 +25,8 @@ public class UserDeleteTest extends BaseTestCase {
     @Test
     @Description("This test try to delete user with id 2")
     @DisplayName("Test negative delete user with id 2")
+    @Feature("Delete User")
+    @Severity(value = SeverityLevel.NORMAL)
     public void testDeleteUserAuthAsSameUser() {
         Map<String, String> authData = new HashMap<>();
         authData.put("email", "vinkotov@example.com");
@@ -50,6 +55,8 @@ public class UserDeleteTest extends BaseTestCase {
     @Test
     @Description("This test delete user")
     @DisplayName("Test positive delete user")
+    @Feature("Delete User")
+    @Severity(value = SeverityLevel.CRITICAL)
     public void testDeleteUser() {
         //Generate user
         Map<String, String> userData = DataGenerator.getRegistrationData();
@@ -86,6 +93,8 @@ public class UserDeleteTest extends BaseTestCase {
     @Test
     @Description("This test try to delete other user")
     @DisplayName("Test negative delete other user")
+    @Feature("Delete User")
+    @Severity(value = SeverityLevel.BLOCKER)
     public void testEditJustCreatedTest() {
         //Generate user
         Map<String, String> userData = DataGenerator.getRegistrationData();

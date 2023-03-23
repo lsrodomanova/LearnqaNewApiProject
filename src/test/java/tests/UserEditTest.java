@@ -1,6 +1,9 @@
 package tests;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
@@ -18,11 +21,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class UserEditTest extends BaseTestCase {
 
+
     private final ApiCoreRequests apiCoreRequests = new ApiCoreRequests();
 
     @Test
     @Description("This test edit user")
     @DisplayName("Test positive edit user")
+    @Feature("Edit User")
+    @Severity(value = SeverityLevel.BLOCKER)
     public void testEditJustCreatedTest() {
         //Generate user
         Map<String, String> userData = DataGenerator.getRegistrationData();
@@ -72,6 +78,8 @@ public class UserEditTest extends BaseTestCase {
     @Test
     @Description("This test try edit user without auth")
     @DisplayName("Test negative edit user")
+    @Feature("Edit User")
+    @Severity(value = SeverityLevel.CRITICAL)
     public void testEditNotAuthorizedTest() {
         //Generate user
         Map<String, String> userData = DataGenerator.getRegistrationData();
@@ -101,6 +109,8 @@ public class UserEditTest extends BaseTestCase {
     @Test
     @Description("This test try edit data by other user")
     @DisplayName("Test negative edit user by other user")
+    @Feature("Edit User")
+    @Severity(value = SeverityLevel.CRITICAL)
     public void testEditUserByOtherUser() {
         //Generate user
         Map<String, String> userData = DataGenerator.getRegistrationData();
@@ -144,6 +154,8 @@ public class UserEditTest extends BaseTestCase {
     @Test
     @Description("This test try edit email to incorrect email")
     @DisplayName("Test negative edit user email without @")
+    @Feature("Edit User")
+    @Severity(value = SeverityLevel.NORMAL)
     public void testEditUserToIncorrectEmail() {
         //Generate user
         Map<String, String> userData = DataGenerator.getRegistrationData();
@@ -188,6 +200,8 @@ public class UserEditTest extends BaseTestCase {
     @Test
     @Description("This test try edit firstName to one letter name")
     @DisplayName("Test negative edit user short firstName")
+    @Feature("Edit User")
+    @Severity(value = SeverityLevel.NORMAL)
     public void testEditUserToShortName() {
         //Generate user
         Map<String, String> userData = DataGenerator.getRegistrationData();

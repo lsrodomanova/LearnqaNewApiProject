@@ -1,6 +1,9 @@
 package tests;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import lib.ApiCoreRequests;
@@ -22,6 +25,8 @@ public class UserRegisterTest extends BaseTestCase {
     @Test
     @Description("This test register existing user")
     @DisplayName("Test register existing user")
+    @Feature("Registration")
+    @Severity(value = SeverityLevel.NORMAL)
     public void testCreateUserWithExistingEmail() {
         String email = "vinkotov@example.com";
 
@@ -42,6 +47,8 @@ public class UserRegisterTest extends BaseTestCase {
     @Test
     @Description("This test register user successfully")
     @DisplayName("Test register user")
+    @Feature("Registration")
+    @Severity(value = SeverityLevel.BLOCKER)
     public void testCreateUserSuccessfully() {
 
         Map<String, String> userData = DataGenerator.getRegistrationData();
@@ -59,6 +66,8 @@ public class UserRegisterTest extends BaseTestCase {
     @Test
     @Description("This test does not authorize user with incorrect email")
     @DisplayName("Test negative auth user by email")
+    @Feature("Registration")
+    @Severity(value = SeverityLevel.CRITICAL)
     public void testCreateUserIncorrectEmail() {
 
         Map<String, String> userData = DataGenerator.getRegistrationDataIncorrectEmail();
@@ -72,8 +81,10 @@ public class UserRegisterTest extends BaseTestCase {
 
     @Description("This test checks authorization without a field")
     @DisplayName("Test negative auth user without a field")
+    @Feature("Registration")
     @ParameterizedTest
     @ValueSource(strings = {"email", "password", "username", "firstName", "lastName"})
+    @Severity(value = SeverityLevel.NORMAL)
     public  void testNegativeCreateUser(String condition) {
 
         if(condition.equals("email")) {
@@ -115,6 +126,8 @@ public class UserRegisterTest extends BaseTestCase {
     @Test
     @Description("This test authorize user with short name")
     @DisplayName("Test auth user short name")
+    @Feature("Registration")
+    @Severity(value = SeverityLevel.NORMAL)
     public void testCreateUserShortName() {
 
         Map<String, String> userData = DataGenerator.getRegistrationDataWithShortName();
@@ -129,6 +142,8 @@ public class UserRegisterTest extends BaseTestCase {
     @Test
     @Description("This test authorize user with long Name")
     @DisplayName("Test auth user long name")
+    @Feature("Registration")
+    @Severity(value = SeverityLevel.NORMAL)
     public void testCreateUserLongName() {
 
         Map<String, String> userData = DataGenerator.getRegistrationDataWithLongName();

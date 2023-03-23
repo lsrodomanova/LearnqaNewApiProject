@@ -1,6 +1,9 @@
 package tests;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import lib.ApiCoreRequests;
@@ -20,6 +23,10 @@ public class UserGetTest extends BaseTestCase {
     private final ApiCoreRequests apiCoreRequests = new ApiCoreRequests();
 
     @Test
+    @Description("This test try get data without auth")
+    @DisplayName("Test negative get data without auth")
+    @Feature("Get Data")
+    @Severity(value = SeverityLevel.BLOCKER)
     public void testGetUserDataNotAuth() {
         Response responseUserData = apiCoreRequests
                 .makeGetRequestWithoutTokenCookie("https://playground.learnqa.ru/api/user/2");
@@ -31,6 +38,10 @@ public class UserGetTest extends BaseTestCase {
     }
 
     @Test
+    @Description("This test get data same user")
+    @DisplayName("Test get data same user")
+    @Feature("Get Data")
+    @Severity(value = SeverityLevel.BLOCKER)
     public void testGetUserDetailsAuthAsSameUser() {
         Map<String, String> authData = new HashMap<>();
         authData.put("email", "vinkotov@example.com");
@@ -52,6 +63,8 @@ public class UserGetTest extends BaseTestCase {
     @Test
     @Description("This test try get data another user")
     @DisplayName("Test negative get data another user")
+    @Feature("Get Data")
+    @Severity(value = SeverityLevel.CRITICAL)
     public void testGetUserDetailsAuthAnotherUser() {
         Map<String, String> authData = new HashMap<>();
         authData.put("email", "vinkotov@example.com");
